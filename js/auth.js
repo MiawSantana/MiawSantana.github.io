@@ -86,6 +86,7 @@ function updateUIForLoggedUser(user) {
     if (accountBtn) {
         accountBtn.addEventListener('click', (e) => {
             e.preventDefault();
+            e.stopPropagation(); // Empêcher la propagation de l'événement
             const accountModal = document.querySelector('.account-modal');
             if (accountModal) {
                 // Pré-remplir les champs du formulaire
@@ -95,6 +96,20 @@ function updateUIForLoggedUser(user) {
                     accountForm.querySelector('#account-email').value = user.email;
                 }
                 accountModal.classList.add('active');
+                profileDropdown.classList.remove('active');
+            }
+        });
+    }
+
+    // Gérer le clic sur "Abonnement"
+    const subscriptionBtn = userSection.querySelector('[data-action="subscription"]');
+    if (subscriptionBtn) {
+        subscriptionBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            const subscriptionModal = document.querySelector('.subscription-modal');
+            if (subscriptionModal) {
+                subscriptionModal.classList.add('active');
                 profileDropdown.classList.remove('active');
             }
         });

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Instructions de Paiement - OptiPC Pro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="animated-background"></div>
+    
+    <div class="payment-instructions">
+        <h1>Instructions de Paiement</h1>
+        
+        <div class="instruction-steps">
+            <div class="step">
+                <i class="fas fa-camera"></i>
+                <h3>Étape 1</h3>
+                <p>Prenez une capture d'écran de votre paiement PayPal comme preuve</p>
+            </div>
+            
+            <div class="step">
+                <i class="fab fa-discord"></i>
+                <h3>Étape 2</h3>
+                <p>Rejoignez notre serveur Discord</p>
+                <a href="https://discord.gg/uDaaMaf7YC" class="discord-btn" target="_blank">
+                    <i class="fab fa-discord"></i> Rejoindre le Discord
+                </a>
+            </div>
+            
+            <div class="step">
+                <i class="fas fa-ticket-alt"></i>
+                <h3>Étape 3</h3>
+                <p>Créez un ticket sur le Discord et envoyez votre preuve de paiement</p>
+            </div>
+        </div>
+
+        <div class="back-button">
+            <a href="index.html" class="return-btn">
+                <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            </a>
+        </div>
+    </div>
+
+    <style>
+        .payment-instructions {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 2rem;
+            background: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.2);
+        }
+
+        .payment-instructions h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .instruction-steps {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .step {
+            text-align: center;
+            padding: 2rem;
+            background: rgba(138, 43, 226, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(138, 43, 226, 0.2);
+        }
+
+        .step i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+        }
+
+        .step p {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 1.5rem;
+        }
+
+        .discord-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: #5865F2;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .discord-btn:hover {
+            background: #4752C4;
+            transform: translateY(-2px);
+        }
+
+        .return-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: var(--gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .return-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(138, 43, 226, 0.3);
+        }
+
+        .back-button {
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        @media (max-width: 768px) {
+            .instruction-steps {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</body>
+</html> 

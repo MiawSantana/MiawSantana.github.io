@@ -400,14 +400,16 @@ function handleDropdownAction(action) {
                             name: newName,
                             role: "founder",
                             permissions: ["all", "admin", "founder"],
-                            subscription: "founder"
+                            subscription: "founder",
+                            email: FOUNDER_EMAIL  // S'assurer que l'email est préservé
                         };
                         localStorage.setItem('user', JSON.stringify(updatedUser));
                         updateUIForLoggedUser(updatedUser);
                     } else {
                         const updatedUser = {
                             ...user,
-                            name: newName
+                            name: newName,
+                            email: user.email  // Préserver l'email de l'utilisateur
                         };
                         localStorage.setItem('user', JSON.stringify(updatedUser));
                         updateUIForLoggedUser(updatedUser);

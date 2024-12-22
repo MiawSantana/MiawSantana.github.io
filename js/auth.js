@@ -81,6 +81,25 @@ function updateUIForLoggedUser(user) {
         profileDropdown.classList.toggle('active');
     });
 
+    // Gérer le clic sur "Mon Compte"
+    const accountBtn = userSection.querySelector('[data-action="account"]');
+    if (accountBtn) {
+        accountBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            const accountModal = document.querySelector('.account-modal');
+            if (accountModal) {
+                // Pré-remplir les champs du formulaire
+                const accountForm = accountModal.querySelector('#account-form');
+                if (accountForm) {
+                    accountForm.querySelector('#account-name').value = user.name;
+                    accountForm.querySelector('#account-email').value = user.email;
+                }
+                accountModal.classList.add('active');
+                profileDropdown.classList.remove('active');
+            }
+        });
+    }
+
     // Gérer la déconnexion
     const logoutBtn = userSection.querySelector('.logout-btn');
     logoutBtn.addEventListener('click', (e) => {
@@ -214,6 +233,23 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedUser = localStorage.getItem('user');
     if (savedUser) {
         updateUIForLoggedUser(JSON.parse(savedUser));
+    }
+
+    // Gestion du formulaire de compte
+    const accountForm = document.querySelector('#account-form');
+    if (accountForm) {
+        accountForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const user = JSON.parse(localStorage.getItem('user'));
+            if (user) {
+                user.name = accountForm.querySelector('#account-name').value;
+                user.email = accountForm.querySelector('#account-email').value;
+                localStorage.setItem('user', JSON.stringify(user));
+                updateUIForLoggedUser(user);
+                document.querySelector('.account-modal').classList.remove('active');
+                alert('Modifications sauvegardées avec succès !');
+            }
+        });
     }
 });
 

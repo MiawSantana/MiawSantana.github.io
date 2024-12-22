@@ -40,22 +40,45 @@ document.addEventListener('DOMContentLoaded', () => {
     // Gérer la soumission du formulaire de connexion
     loginForm?.addEventListener('submit', async (e) => {
         e.preventDefault();
-        const formData = new FormData(loginForm);
-        const data = {
-            email: formData.get('email'),
-            password: formData.get('password')
-        };
+        
+        const email = e.target.email.value;
+        const password = e.target.password.value;
 
         try {
-            const response = await Api.login(data);
-            if (response.user) {
-                localStorage.setItem('user', JSON.stringify(response.user));
-                localStorage.setItem('token', response.token);
-                loginModal.classList.remove('active');
-                updateUIForLoggedUser(response.user);
+            const response = await fetch('https://api.zenohelper.com/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+            if (!response.ok) {
+                throw new Error('Identifiants invalides');
             }
+
+            const data = await response.json();
+            localStorage.setItem('user', JSON.stringify(data.user));
+            localStorage.setItem('token', data.token);
+            
+            // Fermer la modal de connexion
+            document.querySelector('.login-modal').classList.remove('active');
+            
+            // Mettre à jour l'interface utilisateur
+            updateUIForLoggedUser(data.user);
+
         } catch (error) {
-            alert(error.message);
+            // Afficher un message d'erreur plus convivial
+            const errorMessage = document.createElement('p');
+            errorMessage.className = 'error-message';
+            errorMessage.textContent = 'Email ou mot de passe incorrect';
+            
+            // Supprimer l'ancien message d'erreur s'il existe
+            const oldError = e.target.querySelector('.error-message');
+            if (oldError) oldError.remove();
+            
+            // Ajouter le nouveau message d'erreur
+            e.target.insertBefore(errorMessage, e.target.firstChild);
         }
     });
 

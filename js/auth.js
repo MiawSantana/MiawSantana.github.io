@@ -387,43 +387,28 @@ function handleDropdownAction(action) {
             
             // Gérer la soumission du formulaire des informations personnelles
             const accountForm = document.getElementById('account-form');
-            accountForm.onsubmit = async (e) => {
+            accountForm.onsubmit = (e) => {
                 e.preventDefault();
                 const formData = new FormData(accountForm);
                 const newName = formData.get('name');
                 
-                try {
-                    // Vérifier si c'est le compte fondateur ou un utilisateur normal
-                    if (user.email === FOUNDER_EMAIL) {
-                        const updatedUser = {
-                            ...user,
-                            name: newName,
-                            role: "founder",
-                            permissions: ["all", "admin", "founder"],
-                            subscription: "founder",
-                            email: FOUNDER_EMAIL  // S'assurer que l'email est préservé
-                        };
-                        localStorage.setItem('user', JSON.stringify(updatedUser));
-                        updateUIForLoggedUser(updatedUser);
-                    } else {
-                        const updatedUser = {
-                            ...user,
-                            name: newName,
-                            email: user.email  // Préserver l'email de l'utilisateur
-                        };
-                        localStorage.setItem('user', JSON.stringify(updatedUser));
-                        updateUIForLoggedUser(updatedUser);
-                    }
-                    
-                    // Fermer la modale
-                    accountModal.classList.remove('active');
-                    
-                    // Message de succès
-                    alert('Nom mis à jour avec succès !');
-                    
-                } catch (error) {
-                    alert('Erreur lors de la mise à jour du nom');
-                }
+                // Créer un nouvel objet utilisateur avec le nouveau nom
+                const updatedUser = {
+                    ...user,  // Garder toutes les propriétés existantes
+                    name: newName  // Mettre à jour uniquement le nom
+                };
+                
+                // Sauvegarder dans le localStorage
+                localStorage.setItem('user', JSON.stringify(updatedUser));
+                
+                // Mettre à jour l'interface
+                updateUIForLoggedUser(updatedUser);
+                
+                // Fermer la modale
+                accountModal.classList.remove('active');
+                
+                // Message de succès
+                alert('Nom mis à jour avec succès !');
             };
 
             // Gérer la soumission du formulaire de changement de mot de passe

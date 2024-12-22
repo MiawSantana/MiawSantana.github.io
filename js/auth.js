@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const plans = {
         basic: { name: 'Basic', price: '9.99€/mois' },
         premium: { name: 'Premium', price: '19.99€/mois' },
-        pro: { name: 'Pro', price: '29.99€/mois' }
+        pro: { name: 'Pro', price: '50€/∞' }
     };
 
     // Définir les fonctionnalités pour chaque plan
@@ -184,7 +184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const prices = {
             basic: '9.99€/mois',
             premium: '19.99€/mois',
-            pro: '29.99€/mois'
+            pro: '50€/∞'
         };
         planPrice.textContent = prices[plan];
         
@@ -440,7 +440,7 @@ function handleDropdownAction(action) {
                 const plans = {
                     basic: { name: 'Basic', price: '9.99€/mois' },
                     premium: { name: 'Premium', price: '19.99€/mois' },
-                    pro: { name: 'Pro', price: '29.99€/mois' }
+                    pro: { name: 'Pro', price: '50€/∞' }
                 };
                 
                 if (plans[currentUser.subscription]) {
